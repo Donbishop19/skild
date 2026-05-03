@@ -13,10 +13,14 @@ const SkillCard = ({
 }: SkillRecord) => {
 	const [copied, setCopied] = useState(false);
 
-	const handleCopy = () => {
-		navigator.clipboard.writeText(installCommand);
-		setCopied(true);
-		setTimeout(() => setCopied(false), 2000);
+	const handleCopy = async () => {
+		try {
+			await navigator.clipboard.writeText(installCommand);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 2000);
+		} catch {
+			setCopied(false)
+		}
 	};
 
 	return (
@@ -24,7 +28,7 @@ const SkillCard = ({
 			<Link
 				to="/skills"
 				tabIndex={-1}
-				aria-level={`Open ${title}`}
+				aria-lebel={`Open ${title}`}
 				className="overlay"
 			/>
 
@@ -35,7 +39,7 @@ const SkillCard = ({
 						<div className="light amber" />
 						<div className="light green" />
 					</div>
-					<div className="host">resgistry.sh</div>
+					<div className="host">registry.sh</div>
 				</div>
 			</div>
 
@@ -45,7 +49,7 @@ const SkillCard = ({
 						<img src="/logo512.png" alt="author avatar" className="avatar" />
 						<div className="author-copy">
 							<p>Tella</p>
-							<p>{new Date(createdAt as string).toLocaleDateString()}</p>
+							<p>{createdAt ? new Date(createdAt).toLocaleDateString() : 'N/A'}</p>
 						</div>
 					</div>
 
@@ -88,7 +92,7 @@ const SkillCard = ({
           </div>
 
           <div className="actions">
-              <Link to="/skils" className="open" title={`open ${title}`}>
+              <Link to="/skills" className="open" title={`open ${title}`}>
               <span>Open</span>
               <ArrowUpRight size={14} />
             </Link>

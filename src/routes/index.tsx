@@ -19,7 +19,7 @@ function Home() {
         <div className="actions">
           <Link to="/skills" className="btn-primary">
             <Terminal size={18} />
-            <span>Browe Registry</span>
+            <span>Browse Registry</span>
           </Link>
           <Link to="/skills/new" className="btn-secondary">
             <Terminal size={18} />

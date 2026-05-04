@@ -11,7 +11,7 @@ function RouteComponent() {
       <SignIn 
         routing='path'
         path='/sign-in'
-        signUpUrl='sign-up'
+        signUpUrl='/sign-up'
         fallbackRedirectUrl="/"
       />
     </section>

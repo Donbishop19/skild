@@ -32,10 +32,8 @@ function Home() {
         <div className="space-y-2">
           <h2>Recently Created <span className="text-gradient">Skills</span> </h2>
           <p>
-            {''}
-            Latest skills loaded from Firestore in descending creation oder.
+            Latest skills loaded from Firestore in descending creation order.
           </p>
-        </div>
         <div>
           {dummySkills.length > 0 ? (
             <div className="skills-grid">

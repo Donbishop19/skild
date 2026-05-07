@@ -2,12 +2,33 @@ import { usePostHog } from "@posthog/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Terminal } from "lucide-react";
 import SkillCard from "#/components/SkillCard";
-import { dummySkills } from "#/lib/dummy-skills";
 
-export const Route = createFileRoute("/")({ component: Home });
+import { createServerFn } from "@tanstack/react-start";
+import { getSkills } from "#/dataconnect-generated";
+import { dataConnect } from "#/lib/firebase";
+
+
+const getSkillsFn = createServerFn({ method: 'GET' }).handler(async () => {
+	try {
+		const { data } = await getSkills(dataConnect, { searchTerm: '', limit: 10, });
+
+		return data.skills;
+	} catch (error) {
+		console.error(error)
+		return [];
+	}
+} );
+
+export const Route = createFileRoute("/")({ 
+	component: Home,
+	 loader: () => getSkillsFn(),
+});
+
 
 function Home() {
 	const posthog = usePostHog();
+
+	const skills = Route.useLoaderData();
 
 	const handleBrowseRegistryClick = () => {
 		posthog.capture("browse_registry_clicked");
@@ -55,16 +76,15 @@ function Home() {
 				<div className="space-y-2">
 					<h2>
 						Recently Created <span className="text-gradient">Skills</span>{" "}
-            
 					</h2>
 					<p>
 						Latest skills loaded from Firestore in descending creation order.
 					</p>
 				</div>
 				<div>
-					{dummySkills.length > 0 ? (
+					{skills.length > 0 ? (
 						<div className="skills-grid">
-							{dummySkills.map((skill) => (
+							{skills.map((skill) => (
 								<SkillCard key={skill.id} {...skill} />
 							))}
 						</div>

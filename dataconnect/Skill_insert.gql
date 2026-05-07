@@ -1,0 +1,7 @@
+# This is a file for you to write an un-named mutation. 
+# Only one un-named mutation is allowed per file.
+mutation {
+  skill_insert(
+    data: {id: "11111111222233334444555555555558", authorClerkId: "user_3DEAeZ8xxC3KLfn1lyWbwBxqYIk", createdAt: "2026-05-05T11:21:01.133Z", description: "Build scalable React components with proper state management, hooks, and component composition patterns.", installCommand: "npm install react-component-design", promptCofig: "You  are a professional optimization engineer", tags: ["ai-agient", "react", "components", "frontend"], title: "React Component Design", usageExample: "Review the code and optimize it"}
+  )
+}

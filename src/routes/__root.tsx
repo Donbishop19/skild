@@ -9,11 +9,11 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { useEffect } from "react";
+import { Toaster } from "sonner";
 import Crosshair from "#/components/Crosshair";
 import Navbar from "#/components/Navbar";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
-import { Toaster } from "sonner";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
@@ -49,20 +49,22 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function PostHogIdentify() {
-	const { user, isSignedIn } = useUser();
+	const { user, isLoaded, isSignedIn } = useUser();
 	const posthog = usePostHog();
 
 	useEffect(() => {
+		if (!isLoaded) return;
+
 		if (isSignedIn && user) {
 			posthog.identify(user.id, {
 				email: user.primaryEmailAddress?.emailAddress,
 				name: user.fullName ?? undefined,
 				username: user.username ?? undefined,
 			});
-		} else if (!isSignedIn) {
+		} else {
 			posthog.reset();
 		}
-	}, [isSignedIn, user, posthog]);
+	}, [isLoaded, isSignedIn, user, posthog]);
 
 	return null;
 }
@@ -116,7 +118,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					</ClerkProvider>
 				</PostHogProvider>
 				<Scripts />
-				
+
 				<Toaster />
 			</body>
 		</html>

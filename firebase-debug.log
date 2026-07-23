@@ -1,0 +1,17 @@
+[debug] [2026-07-23T15:18:21.220Z] ----------------------------------------------------------------------
+[debug] [2026-07-23T15:18:21.369Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js dataconnect:sdk:generate
+[debug] [2026-07-23T15:18:21.376Z] CLI Version:   15.24.0
+[debug] [2026-07-23T15:18:21.376Z] Platform:      win32
+[debug] [2026-07-23T15:18:21.377Z] Node Version:  v24.14.0
+[debug] [2026-07-23T15:18:21.378Z] Detected Agent: github_copilot_vscode_agent
+[debug] [2026-07-23T15:18:21.378Z] Time:          Thu Jul 23 2026 08:18:21 GMT-0700 (Pacific Daylight Time)
+[debug] [2026-07-23T15:18:21.379Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-23T15:18:44.629Z] defaultcredentials: writing to file C:\Users\HP\AppData\Roaming\firebase\busayo096_gmail_com_application_default_credentials.json
+[debug] [2026-07-23T15:18:46.607Z] Error: Command failed with exit code 1
+    at ChildProcess.<anonymous> (C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\dataconnectEmulator.js:171:32)
+    at ChildProcess.emit (node:events:508:28)
+    at maybeClose (node:internal/child_process:1100:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+[error] 
+[error] Error: An unexpected error has occurred.

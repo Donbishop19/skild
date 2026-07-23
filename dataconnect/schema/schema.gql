@@ -20,7 +20,7 @@ type Skill @table{
 
   # Technical
   installCommand: String!
-  promptCofig: String!
+  promptConfig: String!
   usageExample: String!
 
   # Metadata

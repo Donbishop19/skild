@@ -1,4 +1,4 @@
-import { ConnectorConfig, DataConnect, QueryRef, QueryPromise, ExecuteQueryOptions, DataConnectSettings } from 'firebase/data-connect';
+import { ConnectorConfig, DataConnect, DataConnectSettings, ExecuteQueryOptions, MutationPromise, MutationRef, QueryPromise, QueryRef } from 'firebase/data-connect';
 
 export const connectorConfig: ConnectorConfig;
 export const dataConnectSettings: DataConnectSettings;
@@ -10,6 +10,19 @@ export type DateString = string;
 
 
 
+
+export interface CreateSkillData {
+  skill_insert: Skill_Key;
+}
+
+export interface CreateSkillVariables {
+  title: string;
+  description: string;
+  tags: string[];
+  installCommand: string;
+  promptConfig: string;
+  usageExample: string;
+}
 
 export interface GetSkillsData {
   skills: ({
@@ -42,6 +55,18 @@ export interface User_Key {
   clerkId: string;
   __typename?: 'User_Key';
 }
+
+interface CreateSkillRef {
+  /* Allow users to create refs without passing in DataConnect */
+  (vars: CreateSkillVariables): MutationRef<CreateSkillData, CreateSkillVariables>;
+  /* Allow users to pass in custom DataConnect instances */
+  (dc: DataConnect, vars: CreateSkillVariables): MutationRef<CreateSkillData, CreateSkillVariables>;
+  operationName: string;
+}
+export const createSkillRef: CreateSkillRef;
+
+export function createSkill(vars: CreateSkillVariables): MutationPromise<CreateSkillData, CreateSkillVariables>;
+export function createSkill(dc: DataConnect, vars: CreateSkillVariables): MutationPromise<CreateSkillData, CreateSkillVariables>;
 
 interface GetSkillsRef {
   /* Allow users to create refs without passing in DataConnect */

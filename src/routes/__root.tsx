@@ -115,11 +115,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 							]}
 						/>
 						<PostHogIdentify />
+						<Toaster />
 					</ClerkProvider>
 				</PostHogProvider>
 				<Scripts />
-
-				<Toaster />
 			</body>
 		</html>
 	);

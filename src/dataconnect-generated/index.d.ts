@@ -1,4 +1,4 @@
-import { ConnectorConfig, DataConnect, DataConnectSettings, ExecuteQueryOptions, MutationPromise, MutationRef, QueryPromise, QueryRef } from 'firebase/data-connect';
+import { ConnectorConfig, DataConnect, QueryRef, QueryPromise, ExecuteQueryOptions, MutationRef, MutationPromise, DataConnectSettings } from 'firebase/data-connect';
 
 export const connectorConfig: ConnectorConfig;
 export const dataConnectSettings: DataConnectSettings;
@@ -16,6 +16,7 @@ export interface CreateSkillData {
 }
 
 export interface CreateSkillVariables {
+  authorClerkId: string;
   title: string;
   description: string;
   tags: string[];
@@ -36,7 +37,6 @@ export interface GetSkillsData {
       username?: string | null;
       imageUrl?: string | null;
       clerkId: string;
-      email?: string | null;
     } & User_Key;
   } & Skill_Key)[];
 }
@@ -44,6 +44,7 @@ export interface GetSkillsData {
 export interface GetSkillsVariables {
   searchTerm?: string | null;
   limit?: number | null;
+  offset?: number | null;
 }
 
 export interface Skill_Key {

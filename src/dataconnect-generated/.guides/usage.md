@@ -15,10 +15,7 @@ Here are all of the hooks that get generated:
 import { useCreateSkill, useGetSkills } from '@dataconnect/generated/react';
 // The types of these hooks are available in react/index.d.ts
 
-const createSkillMutation = useCreateSkill();
-const { data, isPending, isSuccess, isError, error } = createSkillMutation;
-
-createSkillMutation.mutate(createSkillVars);
+const { data, isPending, isSuccess, isError, error } = useCreateSkill(createSkillVars);
 
 const { data, isPending, isSuccess, isError, error } = useGetSkills(getSkillsVars);
 
@@ -63,7 +60,7 @@ import { createSkill, getSkills } from '@dataconnect/generated';
 
 
 // Operation CreateSkill:  For variables, look at type CreateSkillVars in ../index.d.ts
-const { data } = await createSkill(dataConnect, createSkillVars);
+const { data } = await CreateSkill(dataConnect, createSkillVars);
 
 // Operation GetSkills:  For variables, look at type GetSkillsVars in ../index.d.ts
 const { data } = await GetSkills(dataConnect, getSkillsVars);

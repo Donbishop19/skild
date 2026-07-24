@@ -1,17 +1,18 @@
-query GetSkills($searchTerm: String = "", $limit: Int = 10) @auth(level: PUBLIC insecureReason: "Skills should be visible to everyone") {
+query GetSkills($searchTerm: String = "%", $limit: Int = 10, $offset: Int = 0) @auth(level: PUBLIC insecureReason: "Skills should be visible to everyone") {
   skills(
     where: {
       _or: [
-        { title: { contains: $searchTerm }}
-        { description: { contains: $searchTerm }}
+        { title: { pattern: { like: $searchTerm, ignoreCase: true }}}
+        { description: { pattern: { like: $searchTerm, ignoreCase: true }}}
       ]
     },
     orderBy: [ {
        createdAt: DESC
     }],
-    limit: $limit
+    limit: $limit,
+    offset: $offset
   ) {
     id title description tags createdAt installCommand
-    author { username imageUrl clerkId email }
+    author { username imageUrl clerkId }
   }
 }

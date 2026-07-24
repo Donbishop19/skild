@@ -76,6 +76,7 @@ export const createSkillFn = createServerFn({ method: "POST" })
 		if (!userId) throw new Error("You must be signed in to publish a skill.");
 
 		const result = await createSkill(dataConnect, {
+			authorClerkId: userId,
 			title,
 			tags: tags
 				.split(",")
